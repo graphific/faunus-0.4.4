@@ -94,12 +94,21 @@
             <version>1.2.1</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- TITAN -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.thinkaurelius.titan</groupId>
             <artifactId>titan-core</artifactId>
             <version>${titan.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.thinkaurelius.titan</groupId>
+            <artifactId>titan-core</artifactId>
+            <version>0.4.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/titan-core-0.4.4-jar-with-dependencies.jar</systemPath>
         </dependency>
+
         <dependency>
             <groupId>com.thinkaurelius.titan</groupId>
             <artifactId>titan-cassandra</artifactId>
@@ -420,23 +429,23 @@
                                 </configuration>
                             </execution>
                             <execution>
-                                <!-- Gollum doesn't understand submodules. It dies 
-                                    with a Grit [sic] error error when run on a submodule. This limitation is intrinsic 
-                                    to Gollum and not just a limitation of gollum-site. Poor submodule support has appeared 
+                                <!-- Gollum doesn't understand submodules. It dies
+                                    with a Grit [sic] error error when run on a submodule. This limitation is intrinsic
+                                    to Gollum and not just a limitation of gollum-site. Poor submodule support has appeared
                                     in at least two Gollum issues:
-                                    
+
                                     https://github.com/gollum/gollum/issues/151
-                                    https://github.com/gollum/gollum/issues/438 
-                                    
-                                    Gollum might eventually throw out Grit in favor of an alternative project called 
+                                    https://github.com/gollum/gollum/issues/438
+
+                                    Gollum might eventually throw out Grit in favor of an alternative project called
                                     Rugged that supposedly handles submodules correctly:
-                                    
-                                    https://github.com/gollum/gollum-lib/pull/16 
-                                    
-                                    For now, we're hacking around Gollum's limitation. The doc submodule .git file usually 
-                                    contains this: gitdir: ../.git/modules/doc This is a sort of pretend symlink. Git 
-                                    is smart enough to handle an actual symlink in a way functionally identical to the 
-                                    gitdir: ... file, and making this a symlink placates Gollum and avoids the submodule 
+
+                                    https://github.com/gollum/gollum-lib/pull/16
+
+                                    For now, we're hacking around Gollum's limitation. The doc submodule .git file usually
+                                    contains this: gitdir: ../.git/modules/doc This is a sort of pretend symlink. Git
+                                    is smart enough to handle an actual symlink in a way functionally identical to the
+                                    gitdir: ... file, and making this a symlink placates Gollum and avoids the submodule
                                     Grit error that would otherwise kill it. -->
                                 <id>hack-submodule-gitdir-for-gollum</id>
                                 <phase>initialize</phase>
